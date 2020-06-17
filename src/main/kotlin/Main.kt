@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
     val komoran = Komoran(DEFAULT_MODEL.LIGHT)
 
     val userDir = System.getProperty("user.dir")
-     komoran.setUserDic("$userDir/userdic.txt")
+    komoran.setUserDic("$userDir/userdic.txt")
 
     post("/summarize", { request, response ->
         response.type("application/json")
