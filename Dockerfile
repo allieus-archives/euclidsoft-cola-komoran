@@ -10,8 +10,11 @@ COPY src src
 RUN chmod +x ./gradlew
 RUN ./gradlew jar
 
+COPY userdic.txt .
+
 FROM adoptopenjdk:8-jdk-hotspot
 COPY --from=builder /code/build/libs/*.jar app.jar
+COPY --from=builder /code/userdic.txt .
 
 EXPOSE 4567
 CMD java -Djava.security.egd=file:/dev/urandom -jar app.jar
