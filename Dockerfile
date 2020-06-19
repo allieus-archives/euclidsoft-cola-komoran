@@ -16,5 +16,5 @@ FROM adoptopenjdk:8-jdk-hotspot
 COPY --from=builder /code/build/libs/*.jar app.jar
 COPY --from=builder /code/userdic.txt .
 
-EXPOSE 4567
+EXPOSE 80
 CMD java -Djava.security.egd=file:/dev/urandom -jar app.jar
