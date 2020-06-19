@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package kr.re.keit;
+
+service Komoran {
+  rpc tokenize (TokenizeRequest) returns (TokenizeResponse) {}
+}
+
+message TokenizeRequest {
+  string sentence = 1;
+}
+
+message TokenizeResponse {
+  repeated string keyword = 1;
+}
