@@ -12,15 +12,15 @@ public class KomoranService extends KomoranGrpc.KomoranImplBase {
     final Komoran komoran;
 
     KomoranService() {
-        String userDir = System.getProperty("user.dir");
+        var userDir = System.getProperty("user.dir");
         this.komoran = new Komoran(DEFAULT_MODEL.FULL);
         this.komoran.setUserDic(userDir + "/userdic.txt");
     }
 
     @Override
     public void tokenize(TokenizeRequest request, StreamObserver<TokenizeResponse> responseObserver) {
-        List<String> nouns = this.komoran.analyze(request.getSentence()).getNouns();
-        TokenizeResponse response = TokenizeResponse.newBuilder()
+        var nouns = this.komoran.analyze(request.getSentence()).getNouns();
+        var response = TokenizeResponse.newBuilder()
             .addAllKeyword(nouns).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
