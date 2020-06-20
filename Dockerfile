@@ -3,11 +3,12 @@ FROM adoptopenjdk:11-jdk-hotspot AS builder
 WORKDIR /code
 COPY gradlew .
 COPY gradle gradle
+RUN chmod +x ./gradlew
+RUN ./gradlew --version
+
 COPY build.gradle .
 COPY settings.gradle .
 COPY src src
-
-RUN chmod +x ./gradlew
 RUN ./gradlew jar
 
 COPY userdic.txt .
