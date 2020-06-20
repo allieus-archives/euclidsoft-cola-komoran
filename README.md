@@ -1,29 +1,21 @@
 # Grpc Tokenizer
 
-## proto 파일 생성
+## 실행 예시
 
-proto/kr/re/keit/Komoran.proto 파일
+### Docker로 구동한 서버
 
-## protoc를 통해 소스코드 생성
+최소 4G 이상의 메모리 할당이 필요합니다.
 
-예시일 뿐, `proto/build.sh` 명령을 통해 수행해주세요.
+```bash
+docker build -t cola-komoran-test .
 
-```sh
 docker run --rm \
-    -v `pwd`:/defs namely/protoc-all \
-    -f ./kr/re/keit/Komoran.proto \
-    -l java
+    -p 50051:50051 \
+    --memory 4G \
+    cola-komoran-test 
 ```
 
-생성한 소스파일 `proto/gen/` 디렉토리에 위치해있으며, 각 언어 별로 복사해서 쓰시면 됩니다.
-
-소스 파일은 수정하지 않고 쓰시되, import 경로명은 수정이 필요할 수도 있습니다.
-
-## Grpc Server 샘플
-
-`Main.kt` 참고
-
-## Grpc Client 샘플
+### 클라이언트
 
 ```python
 from grpc import insecure_channel
@@ -53,4 +45,31 @@ sentence = """
 """
 tokenize = GrpcTokenizer("localhost:50051")
 print(tokenize(sentence))
+# ['워크', '대해', '권선', '동작', '수행', '하기', '위한', '방법', '장치가', '개시', '클램프', '의해', '단부', '파지', '와이어', '훅', '의해', '걸리', '상기', '와이어', '워크', '제공', '구멍', '삽입', '다음', '클램프', '와이어', '당기', '훅', '반대', '위치', '이동', '와이어', '단부', '파지', '클램프', '워크', '대해', '선회', '워크', '와이어', '상기', '구멍', '에지', '와 와', '이어', '사이', '접', '압력', '제거']
 ```
+
+
+## 코드
+
+### proto 파일 생성
+
+proto/kr/re/keit/Komoran.proto 파일
+
+### protoc를 통해 소스코드 생성
+
+예시일 뿐, `proto/build.sh` 명령을 통해 수행해주세요.
+
+```sh
+docker run --rm \
+    -v `pwd`:/defs namely/protoc-all \
+    -f ./kr/re/keit/Komoran.proto \
+    -l java
+```
+
+생성한 소스파일 `proto/gen/` 디렉토리에 위치해있으며, 각 언어 별로 복사해서 쓰시면 됩니다.
+
+소스 파일은 수정하지 않고 쓰시되, import 경로명은 수정이 필요할 수도 있습니다.
+
+### Grpc Server 샘플
+
+`Main.kt` 참고

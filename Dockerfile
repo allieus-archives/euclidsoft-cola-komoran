@@ -1,4 +1,4 @@
-FROM adoptopenjdk:8-jdk-hotspot AS builder
+FROM adoptopenjdk:11-jdk-hotspot AS builder
 
 WORKDIR /code
 COPY gradlew .
@@ -12,9 +12,12 @@ RUN ./gradlew jar
 
 COPY userdic.txt .
 
-FROM adoptopenjdk:8-jdk-hotspot
+FROM adoptopenjdk:11-jdk-hotspot
 COPY --from=builder /code/build/libs/*.jar app.jar
 COPY --from=builder /code/userdic.txt .
 
-EXPOSE 80
-CMD java -Djava.security.egd=file:/dev/urandom -jar app.jar
+EXPOSE 50051
+
+CMD java \
+    -Djava.security.egd=file:/dev/urandom \
+    -jar app.jar
