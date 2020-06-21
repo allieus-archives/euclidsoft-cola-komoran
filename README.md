@@ -4,14 +4,18 @@
 
 ### Docker로 구동한 서버
 
-최소 4G 이상의 메모리 할당이 필요합니다.
+현 userdic.txt에서는 최소 4G 이상의 메모리 할당이 필요합니다. userdic.txt 에 따라 더 큰 메모리 할당이 필요할 수도 있습니다. 현 userdic.txt 파일에서는 초기화에 약 10초 정도 소요됩니다. 메모리 할당에 실패하면 `Exception in thread "main" java.lang.OutOfMemoryError: Java heap space` 예외가 발생합니다. 필히 로그를 확인해주세요.
+
+아래 예시는 docker를 활용한 예시이며, docker swarm이나 k8s 활용을 추천합니다.
 
 ```bash
 docker build -t cola-komoran-test .
 
-docker run --rm \
+docker run -d \
+    --restart=always \
     -p 50051:50051 \
     --memory 4G \
+    --name cola-komoran \
     cola-komoran-test 
 ```
 
@@ -19,8 +23,8 @@ docker run --rm \
 
 ```python
 from grpc import insecure_channel
-from .kr.re.keit.Komoran_pb2_grpc import KomoranStub
-from .kr.re.keit.Komoran_pb2 import TokenizeRequest
+from kr.re.keit.Komoran_pb2_grpc import KomoranStub
+from kr.re.keit.Komoran_pb2 import TokenizeRequest
 
 class GrpcTokenizer:
     def __init__(self, target):
