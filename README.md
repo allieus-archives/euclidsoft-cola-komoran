@@ -19,6 +19,9 @@ docker run -d \
     cola-komoran-test 
 ```
 
+이를 줄여서 `deploy.sh` 스크립트를 만들었습니다.
+
+
 ### 클라이언트
 
 ```python
