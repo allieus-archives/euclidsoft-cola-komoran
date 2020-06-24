@@ -7,7 +7,11 @@ service Komoran {
 }
 
 message TokenizeRequest {
-  string sentence = 1;
+  enum DicType {
+    DEFAULT = 0;
+  }
+  DicType dicType = 1;
+  string sentence = 2;
 }
 
 message TokenizeResponse {

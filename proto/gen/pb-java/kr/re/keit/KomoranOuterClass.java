@@ -19,12 +19,23 @@ public final class KomoranOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string sentence = 1;</code>
+     * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+     * @return The enum numeric value on the wire for dicType.
+     */
+    int getDicTypeValue();
+    /**
+     * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+     * @return The dicType.
+     */
+    kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType getDicType();
+
+    /**
+     * <code>string sentence = 2;</code>
      * @return The sentence.
      */
     java.lang.String getSentence();
     /**
-     * <code>string sentence = 1;</code>
+     * <code>string sentence = 2;</code>
      * @return The bytes for sentence.
      */
     com.google.protobuf.ByteString
@@ -43,6 +54,7 @@ public final class KomoranOuterClass {
       super(builder);
     }
     private TokenizeRequest() {
+      dicType_ = 0;
       sentence_ = "";
     }
 
@@ -76,7 +88,13 @@ public final class KomoranOuterClass {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
+              int rawValue = input.readEnum();
+
+              dicType_ = rawValue;
+              break;
+            }
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               sentence_ = s;
@@ -114,10 +132,124 @@ public final class KomoranOuterClass {
               kr.re.keit.KomoranOuterClass.TokenizeRequest.class, kr.re.keit.KomoranOuterClass.TokenizeRequest.Builder.class);
     }
 
-    public static final int SENTENCE_FIELD_NUMBER = 1;
+    /**
+     * Protobuf enum {@code kr.re.keit.TokenizeRequest.DicType}
+     */
+    public enum DicType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>DEFAULT = 0;</code>
+       */
+      DEFAULT(0),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>DEFAULT = 0;</code>
+       */
+      public static final int DEFAULT_VALUE = 0;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static DicType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static DicType forNumber(int value) {
+        switch (value) {
+          case 0: return DEFAULT;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<DicType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          DicType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<DicType>() {
+              public DicType findValueByNumber(int number) {
+                return DicType.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return kr.re.keit.KomoranOuterClass.TokenizeRequest.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final DicType[] VALUES = values();
+
+      public static DicType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private DicType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:kr.re.keit.TokenizeRequest.DicType)
+    }
+
+    public static final int DICTYPE_FIELD_NUMBER = 1;
+    private int dicType_;
+    /**
+     * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+     * @return The enum numeric value on the wire for dicType.
+     */
+    public int getDicTypeValue() {
+      return dicType_;
+    }
+    /**
+     * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+     * @return The dicType.
+     */
+    public kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType getDicType() {
+      @SuppressWarnings("deprecation")
+      kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType result = kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType.valueOf(dicType_);
+      return result == null ? kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType.UNRECOGNIZED : result;
+    }
+
+    public static final int SENTENCE_FIELD_NUMBER = 2;
     private volatile java.lang.Object sentence_;
     /**
-     * <code>string sentence = 1;</code>
+     * <code>string sentence = 2;</code>
      * @return The sentence.
      */
     public java.lang.String getSentence() {
@@ -133,7 +265,7 @@ public final class KomoranOuterClass {
       }
     }
     /**
-     * <code>string sentence = 1;</code>
+     * <code>string sentence = 2;</code>
      * @return The bytes for sentence.
      */
     public com.google.protobuf.ByteString
@@ -164,8 +296,11 @@ public final class KomoranOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (dicType_ != kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType.DEFAULT.getNumber()) {
+        output.writeEnum(1, dicType_);
+      }
       if (!getSentenceBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sentence_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sentence_);
       }
       unknownFields.writeTo(output);
     }
@@ -176,8 +311,12 @@ public final class KomoranOuterClass {
       if (size != -1) return size;
 
       size = 0;
+      if (dicType_ != kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType.DEFAULT.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, dicType_);
+      }
       if (!getSentenceBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sentence_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sentence_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -194,6 +333,7 @@ public final class KomoranOuterClass {
       }
       kr.re.keit.KomoranOuterClass.TokenizeRequest other = (kr.re.keit.KomoranOuterClass.TokenizeRequest) obj;
 
+      if (dicType_ != other.dicType_) return false;
       if (!getSentence()
           .equals(other.getSentence())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -207,6 +347,8 @@ public final class KomoranOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DICTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + dicType_;
       hash = (37 * hash) + SENTENCE_FIELD_NUMBER;
       hash = (53 * hash) + getSentence().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -342,6 +484,8 @@ public final class KomoranOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        dicType_ = 0;
+
         sentence_ = "";
 
         return this;
@@ -370,6 +514,7 @@ public final class KomoranOuterClass {
       @java.lang.Override
       public kr.re.keit.KomoranOuterClass.TokenizeRequest buildPartial() {
         kr.re.keit.KomoranOuterClass.TokenizeRequest result = new kr.re.keit.KomoranOuterClass.TokenizeRequest(this);
+        result.dicType_ = dicType_;
         result.sentence_ = sentence_;
         onBuilt();
         return result;
@@ -419,6 +564,9 @@ public final class KomoranOuterClass {
 
       public Builder mergeFrom(kr.re.keit.KomoranOuterClass.TokenizeRequest other) {
         if (other == kr.re.keit.KomoranOuterClass.TokenizeRequest.getDefaultInstance()) return this;
+        if (other.dicType_ != 0) {
+          setDicTypeValue(other.getDicTypeValue());
+        }
         if (!other.getSentence().isEmpty()) {
           sentence_ = other.sentence_;
           onChanged();
@@ -452,9 +600,61 @@ public final class KomoranOuterClass {
         return this;
       }
 
+      private int dicType_ = 0;
+      /**
+       * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+       * @return The enum numeric value on the wire for dicType.
+       */
+      public int getDicTypeValue() {
+        return dicType_;
+      }
+      /**
+       * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+       * @param value The enum numeric value on the wire for dicType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDicTypeValue(int value) {
+        dicType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+       * @return The dicType.
+       */
+      public kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType getDicType() {
+        @SuppressWarnings("deprecation")
+        kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType result = kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType.valueOf(dicType_);
+        return result == null ? kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+       * @param value The dicType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDicType(kr.re.keit.KomoranOuterClass.TokenizeRequest.DicType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        dicType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.kr.re.keit.TokenizeRequest.DicType dicType = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDicType() {
+        
+        dicType_ = 0;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object sentence_ = "";
       /**
-       * <code>string sentence = 1;</code>
+       * <code>string sentence = 2;</code>
        * @return The sentence.
        */
       public java.lang.String getSentence() {
@@ -470,7 +670,7 @@ public final class KomoranOuterClass {
         }
       }
       /**
-       * <code>string sentence = 1;</code>
+       * <code>string sentence = 2;</code>
        * @return The bytes for sentence.
        */
       public com.google.protobuf.ByteString
@@ -487,7 +687,7 @@ public final class KomoranOuterClass {
         }
       }
       /**
-       * <code>string sentence = 1;</code>
+       * <code>string sentence = 2;</code>
        * @param value The sentence to set.
        * @return This builder for chaining.
        */
@@ -502,7 +702,7 @@ public final class KomoranOuterClass {
         return this;
       }
       /**
-       * <code>string sentence = 1;</code>
+       * <code>string sentence = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearSentence() {
@@ -512,7 +712,7 @@ public final class KomoranOuterClass {
         return this;
       }
       /**
-       * <code>string sentence = 1;</code>
+       * <code>string sentence = 2;</code>
        * @param value The bytes for sentence to set.
        * @return This builder for chaining.
        */
@@ -1237,12 +1437,14 @@ public final class KomoranOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\030kr/re/keit/Komoran.proto\022\nkr.re.keit\"#" +
-      "\n\017TokenizeRequest\022\020\n\010sentence\030\001 \001(\t\"#\n\020T" +
-      "okenizeResponse\022\017\n\007keyword\030\001 \003(\t2R\n\007Komo" +
-      "ran\022G\n\010tokenize\022\033.kr.re.keit.TokenizeReq" +
-      "uest\032\034.kr.re.keit.TokenizeResponse\"\000b\006pr" +
-      "oto3"
+      "\n\030kr/re/keit/Komoran.proto\022\nkr.re.keit\"q" +
+      "\n\017TokenizeRequest\0224\n\007dicType\030\001 \001(\0162#.kr." +
+      "re.keit.TokenizeRequest.DicType\022\020\n\010sente" +
+      "nce\030\002 \001(\t\"\026\n\007DicType\022\013\n\007DEFAULT\020\000\"#\n\020Tok" +
+      "enizeResponse\022\017\n\007keyword\030\001 \003(\t2R\n\007Komora" +
+      "n\022G\n\010tokenize\022\033.kr.re.keit.TokenizeReque" +
+      "st\032\034.kr.re.keit.TokenizeResponse\"\000b\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1253,7 +1455,7 @@ public final class KomoranOuterClass {
     internal_static_kr_re_keit_TokenizeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_kr_re_keit_TokenizeRequest_descriptor,
-        new java.lang.String[] { "Sentence", });
+        new java.lang.String[] { "DicType", "Sentence", });
     internal_static_kr_re_keit_TokenizeResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_kr_re_keit_TokenizeResponse_fieldAccessorTable = new
