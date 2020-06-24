@@ -11,11 +11,9 @@ COPY settings.gradle .
 COPY src src
 RUN ./gradlew jar
 
-COPY userdic.txt .
-
 FROM adoptopenjdk:11-jdk-hotspot
 COPY --from=builder /code/build/libs/*.jar app.jar
-COPY --from=builder /code/userdic.txt .
+COPY userdic.txt .
 
 EXPOSE 50051
 
