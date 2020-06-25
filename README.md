@@ -24,18 +24,21 @@ docker run -d \
 
 ### 클라이언트
 
+[cola-komoran-python-client](https://github.com/euclidsoft/cola-komoran-python-client)를 설치해주시고, [cola\_komoran\_python\_client/\_\_init\_\_.py](https://github.com/euclidsoft/cola-komoran-python-client/blob/master/cola_komoran_python_client/__init__.py)코드를 차근차근 살펴보시기를 권장드립니다.
+
 ```python
 from grpc import insecure_channel
-from kr.re.keit.Komoran_pb2_grpc import KomoranStub
-from kr.re.keit.Komoran_pb2 import TokenizeRequest
+from cola_komoran_python_client.kr.re.keit.Komoran_pb2_grpc import KomoranStub
+from cola_komoran_python_client.kr.re.keit.Komoran_pb2 import TokenizeRequest
 
 class GrpcTokenizer:
-    def __init__(self, target):
+    def __init__(self, target, dic_type=0):
         channel = insecure_channel(target)
         self.stub = KomoranStub(channel)
+        self.dic_type = dic_type
 
     def __call__(self, sentence):
-        request = TokenizeRequest(sentence=sentence)
+        request = TokenizeRequest(dicType=self.dic_type, sentence=sentence)
         response = self.stub.tokenize(request)
         keyword_list = response.keyword
         return keyword_list
@@ -79,4 +82,5 @@ docker run --rm \
 
 ### Grpc Server 샘플
 
-`Main.kt` 참고
+`src/main/java/kr/re/keit/Main.java` 참고
+
