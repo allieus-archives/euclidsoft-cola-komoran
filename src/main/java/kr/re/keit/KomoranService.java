@@ -6,6 +6,8 @@ import kr.co.shineware.nlp.komoran.core.Komoran;
 import kr.re.keit.KomoranOuterClass.TokenizeRequest;
 import kr.re.keit.KomoranOuterClass.TokenizeResponse;
 
+import java.util.ArrayList;
+
 public class KomoranService extends KomoranGrpc.KomoranImplBase {
     final Komoran komoran_default;
     final Komoran komoran_overall;
@@ -29,10 +31,21 @@ public class KomoranService extends KomoranGrpc.KomoranImplBase {
 
     @Override
     public void tokenize(TokenizeRequest request, StreamObserver<TokenizeResponse> responseObserver) {
-        var komoran = this.getKomoran(request.getDicType());
-        var nouns = komoran.analyze(request.getSentence()).getNouns();
-        var response = TokenizeResponse.newBuilder()
-            .addAllKeyword(nouns).build();
+        var builder = TokenizeResponse.newBuilder();
+        TokenizeResponse response;
+
+        try {
+            var komoran = this.getKomoran(request.getDicType());
+            var nouns = komoran.analyze(request.getSentence()).getNouns();
+            response = builder.addAllKeyword(nouns).build();
+        }
+        catch (Exception e) {
+            var nouns = new ArrayList<String>();
+            response = builder.addAllKeyword(nouns).build();
+
+            e.printStackTrace();
+        }
+
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
