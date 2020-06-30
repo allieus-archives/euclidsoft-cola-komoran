@@ -9,6 +9,8 @@ service Komoran {
 message TokenizeRequest {
   enum DicType {
     DEFAULT = 0;
+    OVERALL = 1;
+    MINIMAL = 2;
   }
   DicType dicType = 1;
   string sentence = 2;

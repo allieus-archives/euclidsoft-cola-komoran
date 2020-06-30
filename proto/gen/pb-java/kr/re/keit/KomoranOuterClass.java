@@ -141,6 +141,14 @@ public final class KomoranOuterClass {
        * <code>DEFAULT = 0;</code>
        */
       DEFAULT(0),
+      /**
+       * <code>OVERALL = 1;</code>
+       */
+      OVERALL(1),
+      /**
+       * <code>MINIMAL = 2;</code>
+       */
+      MINIMAL(2),
       UNRECOGNIZED(-1),
       ;
 
@@ -148,6 +156,14 @@ public final class KomoranOuterClass {
        * <code>DEFAULT = 0;</code>
        */
       public static final int DEFAULT_VALUE = 0;
+      /**
+       * <code>OVERALL = 1;</code>
+       */
+      public static final int OVERALL_VALUE = 1;
+      /**
+       * <code>MINIMAL = 2;</code>
+       */
+      public static final int MINIMAL_VALUE = 2;
 
 
       public final int getNumber() {
@@ -175,6 +191,8 @@ public final class KomoranOuterClass {
       public static DicType forNumber(int value) {
         switch (value) {
           case 0: return DEFAULT;
+          case 1: return OVERALL;
+          case 2: return MINIMAL;
           default: return null;
         }
       }
@@ -1437,14 +1455,14 @@ public final class KomoranOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\030kr/re/keit/Komoran.proto\022\nkr.re.keit\"q" +
-      "\n\017TokenizeRequest\0224\n\007dicType\030\001 \001(\0162#.kr." +
-      "re.keit.TokenizeRequest.DicType\022\020\n\010sente" +
-      "nce\030\002 \001(\t\"\026\n\007DicType\022\013\n\007DEFAULT\020\000\"#\n\020Tok" +
-      "enizeResponse\022\017\n\007keyword\030\001 \003(\t2R\n\007Komora" +
-      "n\022G\n\010tokenize\022\033.kr.re.keit.TokenizeReque" +
-      "st\032\034.kr.re.keit.TokenizeResponse\"\000b\006prot" +
-      "o3"
+      "\n\030kr/re/keit/Komoran.proto\022\nkr.re.keit\"\213" +
+      "\001\n\017TokenizeRequest\0224\n\007dicType\030\001 \001(\0162#.kr" +
+      ".re.keit.TokenizeRequest.DicType\022\020\n\010sent" +
+      "ence\030\002 \001(\t\"0\n\007DicType\022\013\n\007DEFAULT\020\000\022\013\n\007OV" +
+      "ERALL\020\001\022\013\n\007MINIMAL\020\002\"#\n\020TokenizeResponse" +
+      "\022\017\n\007keyword\030\001 \003(\t2R\n\007Komoran\022G\n\010tokenize" +
+      "\022\033.kr.re.keit.TokenizeRequest\032\034.kr.re.ke" +
+      "it.TokenizeResponse\"\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

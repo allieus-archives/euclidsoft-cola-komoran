@@ -9,3 +9,6 @@ __pycache__
 .settings
 .vscode
 userdic.txt
+userdic-minimal.txt
+userdic-overall.txt
+.DS_Store
